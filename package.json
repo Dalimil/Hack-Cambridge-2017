@@ -8,7 +8,9 @@
   "scripts": {
     "start": "node bot/app.js",
     "bot": "nodemon bot/app.js --watch bot",
-    "deploy-bot": "lt --port 8081 -s cambot -o"
+    "deploy-bot": "lt --port 8081 -s cambot -o",
+    "build": "webpack --progress -p",
+    "build-and-watch": "webpack --progress --watch"
   },
   "dependencies": {
     "body-parser": "^1.15.2",

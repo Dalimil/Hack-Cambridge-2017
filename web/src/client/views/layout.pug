@@ -1,7 +1,7 @@
 doctype html
 html
 	head
-		title= title + ' - Web App'
+		title= 'TeamBot'
 		meta(charset='utf-8')
 		meta(name='viewport', content='width=device-width, initial-scale=1')
 		link(rel='shortcut icon', href='/favicon.ico')
@@ -14,12 +14,12 @@ html
 		// Or with React: https://react-bootstrap.github.io/getting-started.html
 		script(src='/js/bootstrap.min.js')
 		
-		- var productionMode = false
+		- var productionMode = true
 		if productionMode
 			script(src='/build/bundle.js')
 		else
 			// bundle from webpack-dev-server (hot reloading using web-sockets + iframe)
-			script(src='http://localhost:8081/bundle.js')
+			script(src='http://localhost:8082/bundle.js')
 				
 
 		block scripts

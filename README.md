@@ -16,4 +16,7 @@ yarn                 # install dependencies
 ```sh
 yarn run bot         # Run bot server
 yarn run deploy-bot  # Tunnel to get URL
+
+# and in a separate terminal window
+yarn run build-and-watch      # client JS bundling
 ```
