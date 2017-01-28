@@ -24,11 +24,42 @@ server.post('/api/messages', connector.listen());
 // Bots Dialogs
 //=========================================================
 
-bot.dialog('/', function (session) {
-    fetch.getDevpost('Dalimil').then(data => {
-        session.send("Hello World " + data);
-    });
-});
+const intents = new builder.IntentDialog();
+bot.dialog('/', intents);
+
+intents.matches(/^change username/i, [
+    function (session) {
+        session.beginDialog('/profile');
+    },
+    function (session, results) {
+        session.send('Ok... Changed your username to %s', session.userData.username);
+    }
+]);
+
+intents.onDefault([
+    function (session, args, next) {
+        if (!session.userData.username) {
+            session.beginDialog('/profile');
+        } else {
+            next();
+        }
+    },
+    function (session, results) {
+        session.send('Hello %s!', session.userData.username);
+    }
+]);
+
+bot.dialog('/profile', [
+    function (session) {
+        builder.Prompts.text(session, 'Hi! What is your username?');
+    },
+    function (session, results) {
+        fetch.getDevpost('Dalimil').then(data => {
+            session.userData.username = "alice"+data;
+            session.endDialog();
+        });
+    }
+]);
 
 // TEST
 fetch.getDevpost('Dalimil').then(data => {

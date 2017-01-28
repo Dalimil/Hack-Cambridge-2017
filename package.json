@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "bot": "node bot/app.js",
-    "deploy-bot": "lt --port 8081 -s cambridgebot -o"
+    "deploy-bot": "lt --port 8081 -s cambot -o"
   },
   "dependencies": {
     "botbuilder": "^3.5.4",
