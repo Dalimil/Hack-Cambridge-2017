@@ -27,14 +27,17 @@ server.post('/api/messages', connector.listen());
 const intents = new builder.IntentDialog();
 bot.dialog('/', intents);
 
+function getDevpostInfo(user) {
+    return (`
+        Name: ${user.name}
+        Hackathons attended: ${user.hackathons_count}
+        Followers: ${user.followers_count}
+        Devpost URL: https://devpost.com/${user.username}`
+    );
+}
 function getAllInfo(userData) {
-    var user = userData.devpost;
-    var out = "Name: " + user.name + "\n" +
-        "Number of Projects: " + user.projects.length + "\n" +
-        "Number of Hackathons: " + user.hackathons_count + "\n" +
-        "Devpost URL: " + "https://devpost.com/dalimil";
     return `Hello ${userData.username}!
-        Devpost data: ${out}`;
+        Devpost data: ${getDevpostInfo(userData.devpost)}`;
 }
 
 intents.matches(/change.* username/i, [
@@ -65,9 +68,11 @@ bot.dialog('/profile', [
         builder.Prompts.text(session, 'Hi! What is your username?');
     },
     function (session, results) {
-        session.userData.username = results.response;
-        fetch.getDevpost(session.userData.username).then(data => {
+        const username = results.response;
+        session.userData.username = username;
+        fetch.getDevpost(username).then(data => {
             session.userData.devpost = data;
+            session.userData.devpost.username = username;
             console.log("Finished /profile", results.response, data);
             session.endDialog();
         });
@@ -76,10 +81,5 @@ bot.dialog('/profile', [
 
 // TEST
 fetch.getDevpost('Dalimil').then(data => {
-    var user = JSON.parse(data);
-    var out = "Name: " + user.name + "\n" +
-        "Number of Projects: " + user.projects.length + "\n" +
-        "Number of Hackathons: " + user.hackathons_count + "\n" +
-        "Devpost URL: " + "https://devpost.com/dalimil";
-    console.log(out);
+    console.log(getDevpostInfo(data));
 });
