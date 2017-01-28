@@ -7,7 +7,7 @@ function getDevpost(username) {
             // Callback function
             if (!error && response.statusCode == 200) {
                 //const data = body.substring(0, 20);
-                resolve(body);
+                resolve(JSON.parse(body));
             } else {
                 reject(response.statusCode);
             }
