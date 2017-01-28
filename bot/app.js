@@ -1,22 +1,23 @@
-var restify = require('restify');
-var builder = require('botbuilder');
+const restify = require('restify');
+const builder = require('botbuilder');
+const fetch = require("./fetch");
 
 //=========================================================
 // Bot Setup
 //=========================================================
 
 // Setup Restify Server
-var server = restify.createServer();
-server.listen(8081, function () {
-   console.log('%s listening to http://localhost:8081', server.name); 
+const server = restify.createServer();
+server.listen(8081, () => {
+   console.log('Bot listening to http://localhost:8081/api/messages'); 
 });
   
 // Create chat bot
-var connector = new builder.ChatConnector({
+const connector = new builder.ChatConnector({
     appId: '5408f3dc-f9f0-473e-9447-88d8cdb48c92',
     appPassword: 'mJonOa2wY5Skjc1ycgymFjG'
 });
-var bot = new builder.UniversalBot(connector);
+const bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
 //=========================================================
@@ -24,6 +25,12 @@ server.post('/api/messages', connector.listen());
 //=========================================================
 
 bot.dialog('/', function (session) {
-    session.send("Hello World");
+    fetch.getDevpost('Dalimil').then(data => {
+        session.send("Hello World " + data);
+    });
 });
 
+// TEST
+fetch.getDevpost('Dalimil').then(data => {
+    console.log("Hello World " + data);
+});
