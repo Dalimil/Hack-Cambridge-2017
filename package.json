@@ -11,12 +11,28 @@
     "deploy-bot": "lt --port 8081 -s cambot -o"
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.7",
+    "cookies": "^0.6.2",
+    "express": "^4.13.4",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.1.1",
+    "morgan": "^1.7.0",
+    "pug": "^2.0.0-alpha7",
     "botbuilder": "^3.5.4",
     "request": "^2.79.0",
     "restify": "^4.3.0"
   },
   "devDependencies": {
     "localtunnel": "^1.8.2",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "babel-cli": "^6.18.0",
+    "babel-loader": "^6.2.8",
+    "babel-preset-latest": "^6.16.0",
+    "concurrently": "^3.1.0",
+    "css-loader": "^0.26.1",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
   }
 }

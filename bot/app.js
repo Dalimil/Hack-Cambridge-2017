@@ -2,6 +2,9 @@ const restify = require('restify');
 const builder = require('botbuilder');
 const fetch = require("./fetch");
 
+const webServer = require("../web/app");
+webServer.run();
+
 //=========================================================
 // Bot Setup
 //=========================================================
