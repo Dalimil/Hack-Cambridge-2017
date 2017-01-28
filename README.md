@@ -14,5 +14,6 @@ yarn                 # install dependencies
 ## Run
 
 ```sh
-yarn run bot
+yarn run bot         # Run bot server
+yarn run deploy-bot  # Tunnel to get URL
 ```

@@ -6,10 +6,14 @@
   "author": "Dalimil Hajek <dalimilhajek@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "bot": "node bot/app.js"
+    "bot": "node bot/app.js",
+    "deploy-bot": "lt --port 8081 -s cambridgebot -o"
   },
   "dependencies": {
     "botbuilder": "^3.5.4",
     "restify": "^4.3.0"
+  },
+  "devDependencies": {
+    "localtunnel": "^1.8.2"
   }
 }
