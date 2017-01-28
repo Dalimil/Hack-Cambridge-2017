@@ -35,6 +35,28 @@ app.get('/', function(req, res) {
 	); 
 });
 
+app.get('/login', (req, res) => {
+	res.render('login');
+});
+
+app.get('/user', (req, res) => {
+	res.render('index');
+});
+
+app.get('/github', (req, res) => {
+	res.send("ok");
+});
+
+const User = require("./User");
+const users = [
+	new User("a", "b", "c"),
+	new User("d", "e", "f")
+];
+
+app.get('/users', (req, res) => {
+	res.json({ user: 'john' });
+});
+
 module.exports = {
 	server: server,
 	app: app

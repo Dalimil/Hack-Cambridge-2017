@@ -8,25 +8,19 @@ block scripts
 
 block body
   <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        // Tab Sing In
-        <div id="tab-sign-in">
-          <form class="form-signin">
-            <h2 class="form-signin-heading">Please sign in</h2>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-            
-            
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" value="remember-me"> This is a Checkbox
-              </label>
-            </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-          </form>
+    <div class="container">
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Hacker Profile</h2>
+        <input type="text"class="form-control" placeholder="GitHub username" required autofocus>
+        <input type="text"class="form-control" placeholder="Devpost username" required autofocus>
+        <input type="text"class="form-control" placeholder="LinkedIn username" required autofocus>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Are you a mentor?
+          </label>
         </div>
-      </div>
+        <a href="/user" class="btn btn-lg btn-primary btn-block" type="submit">Save</a>
+      </form>
     </div>
   </div>
 

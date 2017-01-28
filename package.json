@@ -7,8 +7,9 @@
   "license": "MIT",
   "scripts": {
     "start": "node bot/app.js",
-    "bot": "nodemon bot/app.js --watch bot",
+    "bot": "nodemon bot/app.js --watch bot --watch web",
     "deploy-bot": "lt --port 8081 -s cambot -o",
+    "deploy-web": "lt --port 8080 -s cambotweb -o",
     "build": "webpack --progress -p",
     "build-and-watch": "webpack --progress --watch"
   },
