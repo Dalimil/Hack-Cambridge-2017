@@ -83,3 +83,36 @@ bot.dialog('/profile', [
 fetch.getDevpost('Dalimil').then(data => {
     console.log(getDevpostInfo(data));
 });
+
+//=========================================================
+// Activity Events
+//=========================================================
+
+bot.on('conversationUpdate', function (message) {
+   // Check for group conversations
+    if (message.address.conversation.isGroup) {
+        // Send a hello message when bot is added
+        if (message.membersAdded) {
+            message.membersAdded.forEach(function (identity) {
+                if (identity.id === message.address.bot.id) {
+                    var reply = new builder.Message()
+                            .address(message.address)
+                            .text("Hello everyone!");
+                    bot.send(reply);
+                }
+            });
+        }
+
+        // Send a goodbye message when bot is removed
+        if (message.membersRemoved) {
+            message.membersRemoved.forEach(function (identity) {
+                if (identity.id === message.address.bot.id) {
+                    var reply = new builder.Message()
+                        .address(message.address)
+                        .text("Goodbye");
+                    bot.send(reply);
+                }
+            });
+        }
+    }
+});
