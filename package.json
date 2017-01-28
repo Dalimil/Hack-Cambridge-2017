@@ -1,0 +1,15 @@
+{
+  "name": "Hack-Cambridge-2017",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Dalimil/Hack-Cambridge-2017.git",
+  "author": "Dalimil Hajek <dalimilhajek@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "bot": "node bot/app.js"
+  },
+  "dependencies": {
+    "botbuilder": "^3.5.4",
+    "restify": "^4.3.0"
+  }
+}
