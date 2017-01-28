@@ -27,12 +27,18 @@ server.post('/api/messages', connector.listen());
 const intents = new builder.IntentDialog();
 bot.dialog('/', intents);
 
-intents.matches(/^change username/i, [
+function getAllInfo(userData) {
+    return `Hello ${userData.username}!
+        Devpost data: ${userData.devpost}`;
+}
+
+intents.matches(/change.* username/i, [
     function (session) {
         session.beginDialog('/profile');
     },
     function (session, results) {
-        session.send('Ok... Changed your username to %s', session.userData.username);
+        session.send(`Ok. Changed your username to ${session.userData.username},
+        Debug: ${getAllInfo(session.userData)}`);
     }
 ]);
 
@@ -45,7 +51,7 @@ intents.onDefault([
         }
     },
     function (session, results) {
-        session.send('Hello %s!', session.userData.username);
+        session.send(getAllInfo(session.userData));
     }
 ]);
 
@@ -54,8 +60,10 @@ bot.dialog('/profile', [
         builder.Prompts.text(session, 'Hi! What is your username?');
     },
     function (session, results) {
+        session.userData.username = results.response;
         fetch.getDevpost('Dalimil').then(data => {
-            session.userData.username = "alice"+data;
+            session.userData.devpost = data;
+            console.log("Finished /profile", results.response, data);
             session.endDialog();
         });
     }

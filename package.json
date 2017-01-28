@@ -6,7 +6,8 @@
   "author": "Dalimil Hajek <dalimilhajek@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "bot": "node bot/app.js",
+    "start": "node bot/app.js",
+    "bot": "nodemon bot/app.js --watch bot",
     "deploy-bot": "lt --port 8081 -s cambot -o"
   },
   "dependencies": {
@@ -15,6 +16,7 @@
     "restify": "^4.3.0"
   },
   "devDependencies": {
-    "localtunnel": "^1.8.2"
+    "localtunnel": "^1.8.2",
+    "nodemon": "^1.11.0"
   }
 }
