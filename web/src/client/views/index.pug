@@ -3,7 +3,9 @@ extends layout
 block scripts
   script.
     $(function() {
-      console.log("ok");
+      $("#github-auth").click(() => {
+        window.location.href = "https://github.com/login/oauth/authorize/?client_id=27e45b929055261d9d6b";
+      });
     });
 
 block body
@@ -11,7 +13,7 @@ block body
     <div class="container">
       <form class="form-signin">
         <h2 class="form-signin-heading">Hacker Profile</h2>
-        <input type="text"class="form-control" placeholder="GitHub username" required autofocus>
+        <button id="github-auth">Connect GitHub</button><input type="text"class="form-control" placeholder="GitHub username" required autofocus>
         <input type="text"class="form-control" placeholder="Devpost username" required autofocus>
         <input type="text"class="form-control" placeholder="LinkedIn username" required autofocus>
         <div class="checkbox">
@@ -19,7 +21,7 @@ block body
             <input type="checkbox" value="remember-me"> Are you a mentor?
           </label>
         </div>
-        <a href="/user" class="btn btn-lg btn-primary btn-block" type="submit">Save</a>
+        <a href="#" class="btn btn-lg btn-primary btn-block" type="submit">Save</a>
       </form>
     </div>
   </div>
