@@ -1,12 +1,13 @@
 # Hack Cambridge 2017 - Recurse
 
 Hack Cambridge Hackathon
+
 **Team:** [Dalimil Hajek](https://github.com/dalimil), [Willy Dinata](https://github.com/whdinata), [Alice Grout-Smith](https://github.com/agroutsmith)
 
 ## Screenshots
 
-<img src="https://github.com/Dalimil/Hack-Cambridge-2017/blob/master/docs/screenshots/web-connected.png" width="400">
 <img src="https://github.com/Dalimil/Hack-Cambridge-2017/blob/master/docs/screenshots/web-disconnected.png" width="400">
+<img src="https://github.com/Dalimil/Hack-Cambridge-2017/blob/master/docs/screenshots/web-connected.png" width="400">
 
 *Web-client profile management ^^^*
 
