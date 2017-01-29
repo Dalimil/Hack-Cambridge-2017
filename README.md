@@ -8,15 +8,16 @@ Hack Cambridge Hackathon
 <img src="https://github.com/Dalimil/Hack-Cambridge-2017/blob/master/docs/screenshots/web-connected.png" width="400">
 <img src="https://github.com/Dalimil/Hack-Cambridge-2017/blob/master/docs/screenshots/web-disconnected.png" width="400">
 
-*Web-client profile management*
+*Web-client profile management ^^^*
 
 <img src="https://github.com/Dalimil/Hack-Cambridge-2017/blob/master/docs/screenshots/bot-help.png" width="500">
 
-*Bot tutorial help*
+*Bot tutorial help ^^^*
 
 <img alt="Dalimil - Hack Cambridge" src="https://github.com/Dalimil/Hack-Cambridge-2017/blob/master/docs/screenshots/user-dalimil.png" width="400">
 <img alt="WHDinata - Hack Cambridge" src="https://github.com/Dalimil/Hack-Cambridge-2017/blob/master/docs/screenshots/user-whdinata.png" width="400">
 
+*Bot in a Slack channel ^^^*
 
 ## Setup
 
@@ -37,6 +38,6 @@ yarn run build-and-watch      # client JS bundling
 ```
 
 ## How to DEMO
-1) Access web client & fill in usernames & GitHub OAuth & Save
-2) Go to Slack - list people looking for a team and switch your team flag on
-3) Show someones profile and then show 'my-profile'
+- 1) Access web client & fill in usernames & GitHub OAuth & Save
+- 2) Go to Slack - list people looking for a team and switch your team flag on
+- 3) Show someones profile and then show 'my-profile'
