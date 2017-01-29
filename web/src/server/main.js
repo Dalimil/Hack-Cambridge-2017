@@ -74,7 +74,7 @@ const users = {
 			linkedin: 'whdinata',
 			devpost: 'whdinata',
 			isMentor: false,
-			isLookingForTeam: false,
+			isLookingForTeam: true,
 			ghUsername: 'whdinata',
 			githubLangs: [ 'HTML', 'JavaScript', 'Java', 'Python' ],
 			ghUrl: 'whdinata-github.png',

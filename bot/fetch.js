@@ -29,7 +29,22 @@ function getUser(username) {
     });
 }
 
+function getLfTeamPeople() {
+    return new Promise((resolve, reject) => {
+        request('https://cambotweb.localtunnel.me/lfteam-people/', function(error, response, body) {
+            // Callback function
+            if (!error && response.statusCode == 200 && body != null) {
+                //const data = body.substring(0, 20);
+                resolve(JSON.parse(body));
+            } else {
+                reject(response.statusCode);
+            }
+        });
+    });
+}
+
 module.exports = {
     getDevpost,
-    getUser
+    getUser,
+    getLfTeamPeople
 };

@@ -38,6 +38,10 @@ function showProfile(session, username) {
             session.send("No such user.");
             session.endDialog();
         } else {
+            const hasTeam =  (data.lfteam == false)?"Yes":"No";
+            const isMentor = (data.mentor == true)?"Yes":"No";
+            console.log(data.mentor, "hm", isMentor, typeof data.mentor);
+            console.log(data.lfteam, "hm", hasTeam, typeof data.lfteam);
             var msg = new builder.Message(session)
                 .textFormat(builder.TextFormat.xml)
                 .attachments([{
@@ -46,7 +50,7 @@ function showProfile(session, username) {
                         contentUrl: preurl + data.devpostUrl
                     },
                     new builder.HeroCard(session)
-                        .subtitle(`Mentor: ${data.mentor}  |  LFTeam: ${data.lfteam}  |  GitHub: <https://github.com/${data.github}|@${data.github}>  |  Devpost: <https://devpost.com/${data.devpost}|@${data.devpost}>`)
+                        .subtitle(`HasTeam: ${hasTeam}  |  Mentor: ${isMentor}  |  GitHub: <https://github.com/${data.github}|@${data.github}>  |  Devpost: <https://devpost.com/${data.devpost}|@${data.devpost}>`)
                         .text("Languages: " + data.langs.join(", "))
                         .images([
                             builder.CardImage.create(session, preurl + data.githubUrl)
@@ -70,9 +74,27 @@ intents.matches(/who.*is/i, [
     }
 ]);
 
+intents.matches(/who.*team/i, function(session) {
+    fetch.getLfTeamPeople().then(usernames => {
+        const msg = new builder.Message(session)
+            .textFormat(builder.TextFormat.xml)
+            .text("These people (" +usernames.users.length+ ") are looking for a team:\n\n" + usernames.users.map(u => `<@${u}|${u}>`).join(" "));
+        session.endDialog(msg);
+    })
+});
+
 intents.matches(/help/i, [
     function (session) {
-        session.send("todo help");
+        const msg = new builder.Message(session)
+                .textFormat(builder.TextFormat.xml)
+                .text(
+            "<b>who is @username</b> - show user profile\n\n" +
+            "<b>who team [filter]</b> - show people looking for a team (optionally filter by skill)\n\n" +
+            "<b>who mentor [filter]</b> - show available mentors (optionally filter by skill)\n\n" +
+            "<b>my profile</b> - show your profile\n\n" +
+            "<b>team on/off</b> - switch your profile flag\n\n" +
+            "<b>help</b> - show this help\n\n");
+        session.endDialog(msg);
     }
 ]);
 
