@@ -10,7 +10,8 @@ block scripts
       $("#submit-form").click((e) => {
         $.post('/save', {
           linkedin: $("#linkedin-form").val(),
-          devpost: $("#devpost-form").val()
+          devpost: $("#devpost-form").val(),
+          mentor: $("#mentor-form").prop("checked")
         }, function() {
           console.log("fine");
           $("#success-alert").show();
@@ -46,7 +47,7 @@ block body
         </div>
         <div class="checkbox">
           <label>
-            <input type="checkbox" value="remember-me"> Are you a mentor?
+            <input id="mentor-form" type="checkbox" value="remember-me"> Are you a mentor?
           </label>
         </div>
         <button id="submit-form" class="btn btn-lg btn-primary btn-block">Save</button>

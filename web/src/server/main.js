@@ -79,8 +79,10 @@ app.post('/save', (req, res) => {
 	const devpost = req.body.devpost;
 	const github = req.cookies.get("github-key");
 	const linkedin = req.body.linkedin;
-	console.log(devpost, github, linkedin);
-	//users.push(new User("x", "y", "z"));
+	const mentor = req.body.mentor;
+	console.log(devpost, github, linkedin, mentor);
+	users.push(new User(github, linkedin, devpost, mentor));
+	console.log(users);
 	res.send("ok");
 });
 
