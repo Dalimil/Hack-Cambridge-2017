@@ -80,18 +80,14 @@ intents.onDefault([
                 .textFormat(builder.TextFormat.xml)
                 .attachments([
                     new builder.HeroCard(session)
-                        .title("GitHub: @" + data.github)
-                        .subtitle("GitHub profile")
-                        .text("Languages: " + data.langs)
-                        .images([
-                            builder.CardImage.create(session, preurl + data.githubUrl)
-                        ]),
-                    new builder.HeroCard(session)
-                        .title("Devpost: @" + data.devpost)
-                        .subtitle("Devpost profile")
-                        .text("Mentor: " + data.mentor + " linkedin: " + data.linkedin +" lfteam: "+data.lfteam)
                         .images([
                             builder.CardImage.create(session, preurl + data.devpostUrl)
+                        ]),
+                    new builder.HeroCard(session)
+                        .subtitle(`Mentor: ${data.mentor}  |  LFTeam: ${data.lfteam}  |  GitHub: <https://github.com/${data.github}|@${data.github}>  |  Devpost: <https://devpost.com/${data.devpost}|@${data.devpost}>`)
+                        .text("Languages: " + data.langs.join(", "))
+                        .images([
+                            builder.CardImage.create(session, preurl + data.githubUrl)
                         ])
                 ]);
             session.endDialog(msg);

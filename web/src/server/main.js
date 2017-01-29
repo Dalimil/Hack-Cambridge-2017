@@ -61,7 +61,7 @@ app.get('/github', (req, res) => {
 	function(err, response, body) {
 		const auth = body.split("&").map(x => x.split("=")).find(x => x[0] == "access_token")[1];
 		console.log(auth);
-		req.cookies.set("github-key", auth, { maxAge: 120000 });
+		req.cookies.set("github-key", auth, { maxAge: 120*1000 });
 		res.redirect('/user');
 	});
 });
@@ -87,6 +87,7 @@ app.post('/save', (req, res) => {
 
 /* API for CHATBOT */
 app.get('/user-info', (req, res) => {
+	
 	res.send(users[0].toJSON());
 });
 
