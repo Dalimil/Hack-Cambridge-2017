@@ -7,7 +7,9 @@ Hack Cambridge Hackathon
 
 <img src="https://github.com/Dalimil/Hack-Cambridge-2017/blob/master/docs/screenshots/web-connected.png" width="400">
 <img src="https://github.com/Dalimil/Hack-Cambridge-2017/blob/master/docs/screenshots/web-disconnected.png" width="400">
-<img src="https://github.com/Dalimil/Hack-Cambridge-2017/blob/master/docs/screenshots/bot-help.png" width="700">
+*Web-client profile management*
+<img src="https://github.com/Dalimil/Hack-Cambridge-2017/blob/master/docs/screenshots/bot-help.png" width="500">
+*Bot tutorial help*
 <img alt="Dalimil - Hack Cambridge" src="https://github.com/Dalimil/Hack-Cambridge-2017/blob/master/docs/screenshots/user-dalimil.png" width="400">
 <img alt="WHDinata - Hack Cambridge" src="https://github.com/Dalimil/Hack-Cambridge-2017/blob/master/docs/screenshots/user-whdinata.png" width="400">
 
