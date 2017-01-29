@@ -43,8 +43,17 @@ function getLfTeamPeople() {
     });
 }
 
+function switchTeamFlag(username, flag) {
+    return new Promise((resolve, reject) => {
+        request.post(`https://cambotweb.localtunnel.me/lfteam/${username}/${(flag?"1":"0")}`, {}, function() {
+            resolve("ok");
+        });
+    });
+}
+
 module.exports = {
     getDevpost,
     getUser,
-    getLfTeamPeople
+    getLfTeamPeople,
+    switchTeamFlag
 };

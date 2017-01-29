@@ -129,6 +129,7 @@ app.post('/lfteam/:username/:lfteam', (req, res) => {
 	if (user) {
 		users[req.params.username].isLookingForTeam = (req.params.lfteam == '1');
 	}
+	console.log(users);
 	res.send("ok");
 });
 

@@ -68,11 +68,31 @@ intents.matches(/my.*profile/i, function(session) {
     showProfile(session, session.message.user.name);
 });
 
-intents.matches(/who.*is/i, [
+intents.matches(/who.*is .*@/i, [
     function (session) {
-        showProfile(session, 'whdinata');
+        const candidates = session.message.text.split(" ").filter(m => m.startsWith("@"));
+        if (!candidates || candidates.length == 0) {
+            session.send("Bad format - did you include the @ sign?");
+        } else {
+            const username = candidates[0].substr(1);
+            console.log(username);
+            showProfile(session, username);
+        }
     }
 ]);
+
+intents.matches(/team.*on/i, function(session) {
+    fetch.switchTeamFlag(session.message.user.name, true).then(() => {
+        session.send("Done. Your Looking-For-Team-Flag is now on.");
+    });
+});
+
+intents.matches(/team.*off/i, function(session) {
+    fetch.switchTeamFlag(session.message.user.name, false).then(() => {
+        session.send("Done. Your Looking-For-Team-Flag is now off.");
+    });
+});
+
 
 intents.matches(/who.*team/i, function(session) {
     fetch.getLfTeamPeople().then(usernames => {
