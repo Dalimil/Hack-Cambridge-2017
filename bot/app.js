@@ -30,12 +30,14 @@ server.post('/api/messages', connector.listen());
 const intents = new builder.IntentDialog();
 bot.dialog('/', intents);
 
-intents.matches(/who.*is/i, [
-    function (session) {
-        const username = session.message.user.name;
-        const preurl = 'https://cambotweb.localtunnel.me/uploads/';
-        fetch.getUser(username).then(data => {
-            console.log(data);
+function showProfile(session, username) {
+    const preurl = 'https://cambotweb.localtunnel.me/uploads/';
+    fetch.getUser(username).then(data => {
+        //console.log("aaaaaaaaaaaaa", data)
+        if (data.error) {
+            session.send("No such user.");
+            session.endDialog();
+        } else {
             var msg = new builder.Message(session)
                 .textFormat(builder.TextFormat.xml)
                 .attachments([{
@@ -51,10 +53,20 @@ intents.matches(/who.*is/i, [
                         ])
                 ]);
             session.endDialog(msg);
-        }).catch(e => {
-            session.send("No such user." + e);
-            session.endDialog();
-        });
+        }
+    }).catch(e => {
+        session.send("No such user. [" + e + "]");
+        session.endDialog();
+    });
+}
+
+intents.matches(/my.*profile/i, function(session) {
+    showProfile(session, session.message.user.name);
+});
+
+intents.matches(/who.*is/i, [
+    function (session) {
+        showProfile(session, 'whdinata');
     }
 ]);
 
@@ -65,35 +77,20 @@ intents.matches(/help/i, [
 ]);
 
 intents.onDefault([
-    function (session, args, next) {
-        // console.log(session);
-        if (!session.userData.username) {
-            session.beginDialog('/profile');
-        } else {
-            next();
-        }
-    },
-    function (session, results) {
-        session.send(
-            "Hi... I'm a Hackathon Team Bot.\n\n"+
-            "I'm using the Microsoft Chatbot Platform so I simply work anywhere.\n\n"+
-            "Update your profile here: <https://cambotweb.localtunnel.me|My Profile>\n\n"+
-            "Type <b>help</b> to learn more..."
-        );
-    }
-]);
-
-
-bot.dialog('/profile', [
     function (session) {
-        builder.Prompts.text(session, 'Hi! Are you looking for a team?');
-    },
-    function (session, results) {
-        const info = results.response;
-        session.userData.username = info;
-        console.log("Finished /profile", results.response, data);
-        session.endDialog();
+        if (!session.userData.initialized) {
+            const msg = new builder.Message(session)
+                .textFormat(builder.TextFormat.xml)
+                .text(
+                    "Hi... I'm a Hackathon Team Bot.\n\n"+
+                    "I'm using the Microsoft Chatbot Platform so I simply work anywhere.\n\n"+
+                    "Update your profile here: <https://cambotweb.localtunnel.me|My Profile>\n\n"+
+                    "Type <strong>help</strong> to learn more..."
+                );
+            session.userData.initialized = true;
+            session.endDialog(msg);
+        } else {
+            session.send("I didn't understand that.");
+        }
     }
 ]);
-
-

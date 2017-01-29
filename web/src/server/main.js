@@ -69,7 +69,33 @@ app.get('/github', (req, res) => {
 
 /* User management */
 const User = require("./User");
-const users = {};
+const users = {
+	'whdinata': {
+			linkedin: 'whdinata',
+			devpost: 'whdinata',
+			isMentor: false,
+			isLookingForTeam: false,
+			ghUsername: 'whdinata',
+			githubLangs: [ 'HTML', 'JavaScript', 'Java', 'Python' ],
+			ghUrl: 'whdinata-github.png',
+			devpostUrl: 'whdinata-devpost.png'
+		}
+};
+
+Object.keys(users).forEach(function(u) {
+	users[u].toJSON= function() {
+		return JSON.stringify({
+			linkedin: this.linkedin,
+			devpost: this.devpost,
+			mentor: this.isMentor,
+			lfteam: this.isLookingForTeam,
+			github: this.ghUsername,
+			langs: this.githubLangs,
+			githubUrl: this.ghUrl,
+			devpostUrl: this.devpostUrl
+		});
+	}
+});
 
 app.post('/save', (req, res) => {
 	console.log(req.body);
@@ -90,7 +116,8 @@ app.post('/save', (req, res) => {
 /* API for CHATBOT */
 app.get('/user-info/:username', (req, res) => {
 	const user = users[req.params.username];
-	res.send( user ? user.toJSON() : null);
+	//console.log(user ? user.toJSON() : `{error:true}`);
+	res.send( user ? user.toJSON() : `{"error":true}`);
 });
 
 app.get('/lfteam-people', (req, res) => {
