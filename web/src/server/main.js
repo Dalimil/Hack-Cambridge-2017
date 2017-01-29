@@ -86,8 +86,8 @@ app.post('/save', (req, res) => {
 
 
 /* API for CHATBOT */
-app.get('/users', (req, res) => {
-	res.json({ user: 'john' });
+app.get('/user-info', (req, res) => {
+	res.send(users[0].toJSON());
 });
 
 module.exports = {

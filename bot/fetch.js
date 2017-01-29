@@ -15,6 +15,21 @@ function getDevpost(username) {
     })
 }
 
+function getUser(username) {
+    return new Promise((resolve, reject) => {
+        request('https://cambotweb.localtunnel.me/user-info', function(error, response, body) {
+            // Callback function
+            if (!error && response.statusCode == 200) {
+                //const data = body.substring(0, 20);
+                resolve(JSON.parse(body));
+            } else {
+                reject(response.statusCode);
+            }
+        });
+    });
+}
+
 module.exports = {
-    getDevpost
+    getDevpost,
+    getUser
 };
