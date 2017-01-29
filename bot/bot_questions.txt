@@ -1,0 +1,30 @@
+Who is <username>?
+
+Who is looking for a team?
+
+I'm looking for a team
+
+Have you found a team?
+
+Just confirming my team for tomorrow
+(messages team members to check they havent pulled out).
+
+Are there any teams looking for someone with my skills?
+
+Looking for <language> hacker
+
+Looking for <location> hacker
+
+Show me <username>'s github
+
+Show me <username>'s devpost
+
+Show me <username>'s linked in (links)
+
+Show me <username>'s facebook (links)
+
+Tell people I am looking for a team
+(post links for fb, github, devpost etc) with text : 'Hey I'm looking for a team'
+
+
+
