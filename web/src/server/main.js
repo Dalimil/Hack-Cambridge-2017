@@ -86,8 +86,8 @@ app.post('/save', (req, res) => {
 	res.send("ok");
 });
 
-/* API for CHATBOT */
 
+/* API for CHATBOT */
 app.get('/users', (req, res) => {
 	res.json({ user: 'john' });
 });
