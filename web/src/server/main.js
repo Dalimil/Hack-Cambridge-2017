@@ -69,8 +69,7 @@ app.get('/github', (req, res) => {
 
 /* User management */
 const User = require("./User");
-const users = [
-];
+const users = {};
 
 app.post('/save', (req, res) => {
 	console.log(req.body);
@@ -78,17 +77,32 @@ app.post('/save', (req, res) => {
 	const github = req.cookies.get("github-key");
 	const linkedin = req.body.linkedin;
 	const mentor = req.body.mentor;
-	console.log(devpost, github, linkedin, mentor);
-	users.push(new User(github, linkedin, devpost, mentor));
+	const slack = req.body.slack.toLowerCase();
+	console.log(slack, devpost, github, linkedin, mentor);
+	if (slack) {
+		users[slack] = new User(slack, github, linkedin, devpost, mentor);
+	}
 	console.log(users);
 	res.send("ok");
 });
 
 
 /* API for CHATBOT */
-app.get('/user-info', (req, res) => {
-	
-	res.send(users[0].toJSON());
+app.get('/user-info/:username', (req, res) => {
+	const user = users[req.params.username];
+	res.send( user ? user.toJSON() : null);
+});
+
+app.get('/lfteam-people', (req, res) => {
+	res.send(JSON.stringify({ users: Object.keys(users).filter(u => users[u].isLookingForTeam) }));
+});
+
+app.post('/lfteam/:username/:lfteam', (req, res) => {
+	const user = users[req.params.username];
+	if (user) {
+		users[req.params.username].isLookingForTeam = (req.params.lfteam == '1');
+	}
+	res.send("ok");
 });
 
 module.exports = {

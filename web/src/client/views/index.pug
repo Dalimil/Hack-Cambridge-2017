@@ -14,7 +14,8 @@ block scripts
         $.post('/save', {
           linkedin: $("#linkedin-form").val(),
           devpost: $("#devpost-form").val(),
-          mentor: $("#mentor-form").prop("checked")
+          mentor: $("#mentor-form").prop("checked"),
+          slack: $("#slack-form").val()
         }, function() {
           console.log("fine");
           $("#success-alert").show();
@@ -56,14 +57,18 @@ block body
         <h2 class="form-signin-heading">Hacker Profile</h2>
         <div id="success-alert" style="display: none" class="alert alert-success alert-dismissable fade in">
           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <strong>Success!</strong> Profile has been updated.
+          <strong>Success!</strong> Profile updated.
         </div>
         <div class="input-group margin-bottom-sm">
           <span class="input-group-addon"><i class="fa fa-github-square fa-fw fa-2x" aria-hidden="true"></i></span>
           if github
-            <button class="btn btn-lg btn-primary btn-block" disabled>Connected</button>
+            <button class="btn btn-lg btn-success btn-block" disabled>Connected</button>
           else
-            <button id="github-auth" class="btn btn-lg btn-primary btn-block">Connect GitHub</button>
+            <button id="github-auth" class="btn btn-lg btn-warning btn-block">Connect GitHub</button>
+        </div>
+        <div class="input-group margin-bottom-sm">
+          <span class="input-group-addon"><i class="fa fa-slack fa-fw fa-2x" aria-hidden="true"></i></span>
+          <input id="slack-form" type="text" class="form-control" placeholder="Slack username" autofocus required>
         </div>
         <div class="input-group margin-bottom-sm">
           <span class="input-group-addon"><img style="width: 28px;margin-left: 4px;margin-right:4px;" src="img/devpost.png"></span>

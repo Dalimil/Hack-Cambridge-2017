@@ -36,7 +36,7 @@ function getUserInfo(atoken) {
 			'User-Agent': 'request'
 		}}, function(error, response, body) {
             // Callback function
-			console.log(body);
+			// console.log(body);
             if (!error) {
                 resolve(JSON.parse(body));
             } else {
@@ -88,7 +88,8 @@ var options2 = {
 };
 
 class User {
-	constructor(github, linkedin, devpost, mentor) {
+	constructor(slack, github, linkedin, devpost, mentor) {
+		this.slack = slack;
 		this.github = github;
 		this.linkedin = linkedin; // username
 		this.devpost = devpost; 
