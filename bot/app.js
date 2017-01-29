@@ -53,6 +53,16 @@ intents.matches(/change.* username/i, [
     }
 ]);
 
+intents.matches(/who.*is/i, [
+    function (session) {
+        builder.Prompts.text(session, 'Who?');
+    },
+    function (session, results) {
+        const username = results.response;
+        session.send('ok' + username);
+    }
+]);
+
 intents.onDefault([
     function (session, args, next) {
         if (!session.userData.username) {
@@ -82,10 +92,6 @@ bot.dialog('/profile', [
     }
 ]);
 
-// TEST
-fetch.getDevpost('Dalimil').then(data => {
-    console.log(getDevpostInfo(data));
-});
 
 //=========================================================
 // Activity Events

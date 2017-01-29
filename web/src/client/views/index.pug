@@ -6,6 +6,18 @@ block scripts
       $("#github-auth").click(() => {
         window.location.href = "https://github.com/login/oauth/authorize/?client_id=27e45b929055261d9d6b";
       });
+
+      $("#submit-form").click((e) => {
+        $.post('/save', {
+          linkedin: $("#linkedin-form").val(),
+          devpost: $("#devpost-form").val()
+        }, function() {
+          console.log("fine");
+          $("#success-alert").show();
+        });
+        e.preventDefault();
+        return;
+      });
     });
 
 block body
@@ -13,15 +25,31 @@ block body
     <div class="container">
       <form class="form-signin">
         <h2 class="form-signin-heading">Hacker Profile</h2>
-        <button id="github-auth">Connect GitHub</button><input type="text"class="form-control" placeholder="GitHub username" required autofocus>
-        <input type="text"class="form-control" placeholder="Devpost username" required autofocus>
-        <input type="text"class="form-control" placeholder="LinkedIn username" required autofocus>
+        <div id="success-alert" style="display: none" class="alert alert-success alert-dismissable fade in">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Success!</strong> Profile has been updated.
+        </div>
+        <div class="input-group margin-bottom-sm">
+          <span class="input-group-addon"><i class="fa fa-github-square fa-fw fa-2x" aria-hidden="true"></i></span>
+          if github
+            <button id="github-auth" class="btn btn-lg btn-primary btn-block" disabled>Connected</button>
+          else
+            <button id="github-auth" class="btn btn-lg btn-primary btn-block">Connect GitHub</button>
+        </div>
+        <div class="input-group margin-bottom-sm">
+          <span class="input-group-addon"><img style="width: 28px;margin-left: 4px;margin-right:4px;" src="img/devpost.png"></span>
+          <input id="devpost-form" type="text" class="form-control" placeholder="Devpost username" autofocus>
+        </div>
+        <div class="input-group margin-bottom-sm">
+          <span class="input-group-addon"><i class="fa fa-linkedin-square fa-fw fa-2x" aria-hidden="true"></i></span>
+          <input id="linkedin-form" type="text" class="form-control" placeholder="LinkedIn username" autofocus>
+        </div>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Are you a mentor?
           </label>
         </div>
-        <a href="#" class="btn btn-lg btn-primary btn-block" type="submit">Save</a>
+        <button id="submit-form" class="btn btn-lg btn-primary btn-block">Save</button>
       </form>
     </div>
   </div>
