@@ -22,6 +22,7 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.1.1",
     "morgan": "^1.7.0",
+    "phantomjs-prebuilt": "^2.1.14",
     "pug": "^2.0.0-alpha7",
     "request": "^2.79.0",
     "restify": "^4.3.0",

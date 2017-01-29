@@ -3,8 +3,11 @@ extends layout
 block scripts
   script.
     $(function() {
-      $("#github-auth").click(() => {
-        window.location.href = "https://github.com/login/oauth/authorize/?client_id=27e45b929055261d9d6b";
+      $("#github-auth").click((e) => {
+        console.log("bye");
+        window.location = "https://github.com/login/oauth/authorize/?client_id=27e45b929055261d9d6b&redirect_uri=https://cambotweb.localtunnel.me/github";
+        e.preventDefault();
+        return;
       });
 
       $("#submit-form").click((e) => {
@@ -58,7 +61,7 @@ block body
         <div class="input-group margin-bottom-sm">
           <span class="input-group-addon"><i class="fa fa-github-square fa-fw fa-2x" aria-hidden="true"></i></span>
           if github
-            <button id="github-auth" class="btn btn-lg btn-primary btn-block" disabled>Connected</button>
+            <button class="btn btn-lg btn-primary btn-block" disabled>Connected</button>
           else
             <button id="github-auth" class="btn btn-lg btn-primary btn-block">Connect GitHub</button>
         </div>

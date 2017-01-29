@@ -31,9 +31,7 @@ app.get('/', function(req, res) {
 	// res.json({ user: 'john' }); // Send json response
 	// res.sendFile( __dirname + "/" + "index.html" );
 	// Now render .pug template with any JSON locals/variables:
-	res.render('index', 
-		{ title: 'Demo', data: { name: "any json", items: [3, 5, 8] } } 
-	); 
+	res.redirect('/user');
 });
 
 app.get('/login', (req, res) => {
@@ -41,11 +39,13 @@ app.get('/login', (req, res) => {
 });
 
 app.get('/user', (req, res) => {
+	console.log("key", req.cookies.get("github-key"));
 	res.render('index', { github: req.cookies.get("github-key")});
 });
 
 app.get('/github', (req, res) => {
 	const code = req.query().replace("code=", "");
+	console.log(code);
 	request.post({
 		url: 'https://github.com/login/oauth/access_token',
 		form: {
@@ -61,7 +61,7 @@ app.get('/github', (req, res) => {
 	function(err, response, body) {
 		const auth = body.split("&").map(x => x.split("=")).find(x => x[0] == "access_token")[1];
 		console.log(auth);
-		req.cookies.set("github-key", auth);
+		req.cookies.set("github-key", auth, { maxAge: 120000 });
 		res.redirect('/user');
 	});
 });
@@ -70,8 +70,6 @@ app.get('/github', (req, res) => {
 /* User management */
 const User = require("./User");
 const users = [
-	new User("a", "b", "c"),
-	new User("d", "e", "f")
 ];
 
 app.post('/save', (req, res) => {

@@ -34,3 +34,4 @@ node_modules
 
 src/client/public/build/
 src/client/public/uploads/
+web/src/client/public/uploads/
